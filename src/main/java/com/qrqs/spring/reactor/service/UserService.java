@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @SuppressWarnings({"unused"})
 @Service
 @Slf4j
@@ -35,6 +37,6 @@ public class UserService {
     }
 
     public Flux<User> findAll() {
-        return userRepository.findAll();
+        return userRepository.findAll().delayElements(Duration.ofSeconds(1));
     }
 }

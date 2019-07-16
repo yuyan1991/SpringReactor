@@ -4,6 +4,7 @@ import com.qrqs.spring.reactor.database.model.User;
 import com.qrqs.spring.reactor.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,7 +29,7 @@ public class UserController {
         return userService.deleteByUserName(username);
     }
 
-    @GetMapping("")
+    @GetMapping(value = "", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<User> findAllUser() {
         log.info("Enter into findAllUser()");
         return userService.findAll();
